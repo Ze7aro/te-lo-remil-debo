@@ -415,7 +415,7 @@ async function main() {
   }
 
   console.log('Seed OK: Club Prueba (slug: club-prueba)');
-  console.log('Platform: platform@clubapp.com / platform123 → /platform/login');
+  console.log('Platform: platform@clubapp.com / platform123 → /login');
   console.log('Admin: admin@clubprueba.com / admin123 → /login/club-prueba');
   console.log('Socios pass: socio123 (DNI 30111222, 30222333, 30333444)');
 }
