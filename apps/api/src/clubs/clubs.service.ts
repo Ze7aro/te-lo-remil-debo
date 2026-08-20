@@ -51,15 +51,19 @@ export class ClubsService {
   ) {}
 
   buscar(q: string) {
+    const texto = q.trim();
     return this.prisma.club.findMany({
-      where: q
-        ? {
-            OR: [
-              { nombre: { contains: q, mode: 'insensitive' } },
-              { slug: { contains: q, mode: 'insensitive' } },
-            ],
-          }
-        : undefined,
+      where: {
+        activo: true,
+        ...(texto
+          ? {
+              OR: [
+                { nombre: { contains: texto, mode: 'insensitive' as const } },
+                { slug: { contains: texto, mode: 'insensitive' as const } },
+              ],
+            }
+          : {}),
+      },
       select: {
         id: true,
         slug: true,
@@ -69,7 +73,7 @@ export class ClubsService {
         color_secundario: true,
         color_terciario: true,
       },
-      take: 20,
+      take: 200,
       orderBy: { nombre: 'asc' },
     });
   }
